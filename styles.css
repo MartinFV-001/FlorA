@@ -1,4 +1,4 @@
-/* Fuente solicitada */
+/* ====== Fuente solicitada ====== */
 .amatic-sc-regular {
   font-family: "Amatic SC", sans-serif;
   font-weight: 400;
@@ -10,77 +10,85 @@
   font-style: normal;
 }
 
-/* Color de texto */
-:root { --accent: rgb(254, 207, 103); }
+/* ====== Colores y layout base ====== */
+:root {
+  --accent: rgb(254, 207, 103);
+  /* Espaciado compacto entre bloques (header-main-footer) */
+  --gap-v: clamp(6px, 1.4vmin, 14px);
+}
+
+html, body { height: 100%; }
+body.bg-dark { background: #000; }
 .text-accent, .text-accent * { color: var(--accent); }
 
-body.bg-dark { background: #000; }
+/* Página en columna con espacios MUY ajustados */
+.page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-v);
+  padding-block: clamp(8px, 1.6vmin, 18px);
+  padding-inline: clamp(10px, 3vmin, 28px);
+}
 
-/* Título y subtítulo */
+/* ====== Título y subtítulo responsivos ====== */
 h1 {
-  line-height: .9;
+  line-height: .92;
   letter-spacing: .5px;
-  font-size: 5rem;     /* grande en desktop */
+  /* Escala fluida: mínimo 32px, ideal con viewport, máximo 76px */
+  font-size: clamp(2rem, 6.2vw, 4.75rem);
+  margin: 0;
+}
+.sub {
+  /* 18px → 36px aprox. según viewport */
+  font-size: clamp(1.125rem, 2.8vw, 2.25rem);
+  margin-top: clamp(2px, .6vmin, 6px);
 }
 
-header p {
-  font-size: 2.5rem;   /* subtítulo grande en desktop */
+/* ====== Imagen principal ====== */
+.content-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* separaciones arriba/abajo muy cortas */
+  margin-block: calc(var(--gap-v) * 0.6);
 }
 
-/* Imagen principal */
 .hero-flowers {
-  max-width: min(92vw, 560px);
+  /* Ancho fluido y limitado */
+  width: clamp(220px, 62vw, 560px);
   height: auto;
   z-index: 3;
 }
 
-/* MONO en el fondo, pequeño y sutil */
+/* ====== Footer compacto ====== */
+footer {
+  font-size: clamp(0.95rem, 2.3vw, 1.25rem);
+  line-height: 1.25;
+  margin-bottom: clamp(6px, 1.4vmin, 12px);
+}
+
+/* ====== MONO en el fondo, pequeño y sutil ====== */
 .mono-bg {
   position: fixed;
   left: 5vw;
   bottom: 6vh;
-  width: clamp(100px, 10vw, 90px);
-  opacity: 0.14;        /* sutil */
+  width: clamp(64px, 9vw, 92px);
+  opacity: 0.14;
   user-select: none;
-  pointer-events: none; /* no bloquea clics */
-  z-index: 1;           /* detrás de pétalos y contenido */
+  pointer-events: none;
+  z-index: 0; /* por detrás de pétalos y contenido */
   filter: brightness(1) contrast(1.05);
 }
 
-/* Preferencias de usuario: reducir movimiento */
+/* ====== Accesibilidad: reducir movimiento ====== */
 @media (prefers-reduced-motion: reduce) {
   .petal-field .petal { animation: none !important; }
 }
 
-/* Centrado absoluto en pantallas pequeñas */
-/* Asegura altura usable y scroll en móvil */
-html, body { height: 100%; }
-
-/* Usar la “small viewport unit” para iOS/Android */
-@media (max-width: 768px) {
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100svh;   /* evita recortes por barras del navegador */
-  }
-  main {
-    flex: 1;              /* ocupa el espacio libre */
-    display: flex;
-    justify-content: center;
-    align-items: center;  /* centra flores vertical y horizontal */
-  }
+/* ====== Ajustes finos para móviles muy estrechos ====== */
+@media (max-width: 360px) {
+  .hero-flowers { width: clamp(200px, 70vw, 520px); }
 }
-
-/* La animación no debe generar scrollbars */
-.petal-field { overflow: hidden; }
-
-
-  /* Ajuste de títulos en móvil */
-  h1 {
-    font-size: 7rem; /* un poco más chico en móvil */
-  }
-  header p {
-    font-size: 5.4rem;
-  }
-}
-
