@@ -70,19 +70,6 @@ footer {
   margin-bottom: clamp(6px, 1.4vmin, 12px);
 }
 
-/* ====== MONO en el fondo, pequeño y sutil ====== */
-.mono-bg {
-  position: fixed;
-  left: 5vw;
-  bottom: 6vh;
-  width: clamp(64px, 9vw, 92px);
-  opacity: 0.14;
-  user-select: none;
-  pointer-events: none;
-  z-index: 0; /* por detrás de pétalos y contenido */
-  filter: brightness(1) contrast(1.05);
-}
-
 /* ====== Accesibilidad: reducir movimiento ====== */
 @media (prefers-reduced-motion: reduce) {
   .petal-field .petal { animation: none !important; }
@@ -92,3 +79,4 @@ footer {
 @media (max-width: 360px) {
   .hero-flowers { width: clamp(200px, 70vw, 520px); }
 }
+
