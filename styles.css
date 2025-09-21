@@ -80,3 +80,13 @@ footer {
   .hero-flowers { width: clamp(200px, 70vw, 520px); }
 }
 
+footer.footer-rotator {
+  margin-top: clamp(6px, 1.6vmin, 14px);
+  font-size: clamp(0.95rem, 2.3vw, 1.25rem);
+  line-height: 1.25;
+}
+footer.footer-rotator #footer-phrase {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
