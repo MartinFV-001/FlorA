@@ -53,19 +53,27 @@ header p {
 }
 
 /* Centrado absoluto en pantallas pequeñas */
+/* Asegura altura usable y scroll en móvil */
+html, body { height: 100%; }
+
+/* Usar la “small viewport unit” para iOS/Android */
 @media (max-width: 768px) {
   body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100svh;   /* evita recortes por barras del navegador */
   }
-
   main {
-    flex-grow: 1;
+    flex: 1;              /* ocupa el espacio libre */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;  /* centra flores vertical y horizontal */
   }
+}
+
+/* La animación no debe generar scrollbars */
+.petal-field { overflow: hidden; }
+
 
   /* Ajuste de títulos en móvil */
   h1 {
@@ -75,3 +83,4 @@ header p {
     font-size: 5.4rem;
   }
 }
+
